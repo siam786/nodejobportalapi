@@ -1,14 +1,19 @@
 //imports
-const express = require('express')
+import express from 'express'
+import dotenv from 'dotenv'
 
+//dotenv config
+dotenv.config()
 //rest object
 const app = express()
 
 //routes
-app.get('/',(req,res)=>{
-    res.send('<h1>Welcome to node server</h1>')
+app.get('/', (req, res) => {
+  res.send('<h1>Welcome to latest server</h1>')
 })
+//port
+const port = process.env.PORT || 8080
 //listen
-app.listen(8080,()=>{
-    console.log("Node Server Running");
+app.listen(port, () => {
+  console.log(`Node Server running ${process.env.DEV_MODE} on port no ${port}`)
 })
