@@ -1,5 +1,6 @@
 //package imports
 import express from 'express'
+import 'express-async-errors'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import morgan from 'morgan'
@@ -9,6 +10,7 @@ import connectDB from './config/db.js'
 //routes
 import testRoutes from './routes/testRoutes.js'
 import authRoutes from './routes/userRouter.js'
+import errorMiddlewares from './middleweares/errorMiddlewares.js'
 
 //dotenv config
 dotenv.config()
@@ -25,6 +27,8 @@ app.use(cors("dev"))
 app.use('/api/v1/test',testRoutes)
 app.use('/api/v1/auth',authRoutes)
 //port
+//error middlewears
+app.use(errorMiddlewares)
 const PORT = process.env.PORT || 8080
 //listen
 app.listen(PORT, () => {
